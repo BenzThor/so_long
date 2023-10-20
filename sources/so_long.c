@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 10:38:05 by tbenz             #+#    #+#             */
-/*   Updated: 2023/10/09 11:25:01 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/10/20 15:10:21 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int argc, char *argv)
 {
 	t_list	game;
 
-	ft_initialize_game(&game); // to be implemented
+	ft_initialize_game(&game);
 }
 /*
 int	main(void)

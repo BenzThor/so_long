@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 11:00:17 by tbenz             #+#    #+#             */
-/*   Updated: 2023/10/09 18:39:46 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/10/20 17:04:52 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_free_close(char *line, int fd)
 	close(fd);
 }
 
-int	ft_rows_and_columns(int fd, t_data *game)
+int	ft_rows_and_col(int fd, t_data *game)
 {
 	char	*line;
 	int		column_control;
@@ -29,14 +29,14 @@ int	ft_rows_and_columns(int fd, t_data *game)
 		ft_free_close(line, fd);
 		return (game->error_code = -1);
 	}
-	while (line[game->columns] && line[game->columns] != '\n')
-		game->columns++;
+	while (line[game->col] && line[game->col] != '\n')
+		game->col++;
 	while (line)
 	{
 		column_control = 0;
 		while (line[column_control] && line[column_control] != '\n')
 			column_control++;
-		if (column_control != game->columns)
+		if (column_control != game->col)
 			return (game->error_code = -2);
 		game->rows++;
 		free(line);
@@ -74,7 +74,7 @@ int	ft_fill_map(int fd, t_data *game)
 			close(fd);
 			return (game->error_code = -1);
 		}
-		game->map[i++] = ft_substr(line, 0, game->columns);
+		game->map[i++] = ft_substr(line, 0, game->col);
 		if (!game->map[i - 1])
 		{
 			ft_free(game->map, i);
@@ -92,7 +92,7 @@ int	ft_create_map(t_data *game)
 	fd = open(game->map_file, O_RDONLY);
 	if (fd < 0)
 		return (game->error_code = -3);
-	ft_rows_and_columns(fd, game);
+	ft_rows_and_col(fd, game);
 	if (game->error_code < 0)
 		return (game->error_code);
 	fd = open(game->map_file, O_RDONLY);
