@@ -1,30 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_make_map.c                                      :+:      :+:    :+:   */
+/*   key_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/07 13:45:21 by tbenz             #+#    #+#             */
-/*   Updated: 2023/10/20 19:19:27 by tbenz            ###   ########.fr       */
+/*   Created: 2023/10/21 14:16:24 by tbenz             #+#    #+#             */
+/*   Updated: 2023/10/21 14:16:55 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
 
-char	*ft_make_map(int argc, char **argv, t_data *game)
-{
-	if (argc == 2)
-	{
-		game->map_file = argv[1];
-		if (!game->map_file)
-			return (NULL);
-		ft_create_map(game);
-		ft_map_checker(game);
-		
-	}
-	return (NULL);
-}
+int	key_hook()
