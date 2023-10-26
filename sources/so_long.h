@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 11:10:38 by tbenz             #+#    #+#             */
-/*   Updated: 2023/10/26 18:27:55 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/10/26 19:19:46 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,8 @@ typedef struct s_data
 	int			x;
 	int			y;
 	int			error_code;
+	int			movements;
+	char		tile;
 }	t_data;
 
 /* 	function definitions */
