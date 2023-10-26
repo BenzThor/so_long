@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 13:44:03 by tbenz             #+#    #+#             */
-/*   Updated: 2023/10/20 19:14:11 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/10/25 14:16:21 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	ft_check_path_helper(t_data *game, t_data gc, int d)
 
 void	ft_check_path(t_data *game, t_data gmc)
 {
- 	t_data gc;
+	t_data	gc;
 
 	gc = gmc;
 	gc.map[gc.y][gc.x] = 'V';
@@ -101,7 +101,7 @@ void	ft_check_path(t_data *game, t_data gmc)
 	if (gc.x > 1 && gc.map[gc.y][gc.x - 1] != '1' && \
 		gc.map[gc.y][gc.x - 1] != 'V')
 		ft_check_path_helper(game, gc, 3);
-	if (gc.x < gc.col - 2 && gc.map[gc.y][gc.x + 1] != '1' &&\
+	if (gc.x < gc.col - 2 && gc.map[gc.y][gc.x + 1] != '1' && \
 			gc.map[gc.y][gc.x + 1] != 'V')
 		ft_check_path_helper(game, gc, 4);
 }

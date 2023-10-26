@@ -1,25 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/25 14:16:44 by tbenz             #+#    #+#             */
+/*   Updated: 2023/10/25 16:05:19 by tbenz            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
+#include "stdio.h"
 
 void	ft_initialize_game(t_data *game)
 {
-	game->map_file = "\n";
-	game->rows = 0;
-	game->col = 0;
-	game->collectibles = 0;
-	game->exit = 0;
-	game->player = 0;
-	game->x = 0;
-	game->y = 0;
-	game->error_code = 0;
+	ft_bzero(game, sizeof(t_data));
 }
 
-#include <stdio.h>
 int	main(void)
 {
 	t_data	game;
 	int		check;
-	int		i = 0;
+	int		i;
 
+	i = 0;
 	ft_initialize_game(&game);
 	game.map_file = "../map/map.txt";
 	printf("%s\n", game.map_file);

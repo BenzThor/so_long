@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_make_map.c                                      :+:      :+:    :+:   */
+/*   main2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/07 13:45:21 by tbenz             #+#    #+#             */
-/*   Updated: 2023/10/25 16:28:17 by tbenz            ###   ########.fr       */
+/*   Created: 2023/10/26 14:59:39 by tbenz             #+#    #+#             */
+/*   Updated: 2023/10/26 14:59:53 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
 
-char	*ft_make_map(int argc, char **argv, t_data *game)
+int	main(void)
 {
-	if (argc == 2)
-	{
-		game->map_file = argv[1];
-		if (!game->map_file)
-			return (NULL);
-		ft_create_map(game);
-		ft_map_checker(game);
-	}
-	
-	return (NULL);
+	t_data	game;
+
+	ft_printf("%d", ft_init(&game));
 }
