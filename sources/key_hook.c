@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 14:16:24 by tbenz             #+#    #+#             */
-/*   Updated: 2023/10/26 19:27:37 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/10/26 19:29:53 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_player_move(t_data *game, int dir, int x, int y)
 	pos = game->map[y][x];
 	if (pos == 'E' && game->collectibles == 0)
 		ft_close_game(game);
-	else if (pos == '0' || pos == 'C' || pos = 'E')
+	else if (pos == '0' || pos == 'C' || pos == 'E')
 	{
 		game->tile = pos;
 		if (!game->tile)
