@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 13:45:21 by tbenz             #+#    #+#             */
-/*   Updated: 2023/10/25 16:28:17 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/10/26 16:25:01 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,5 @@ char	*ft_make_map(int argc, char **argv, t_data *game)
 		ft_create_map(game);
 		ft_map_checker(game);
 	}
-	
 	return (NULL);
 }

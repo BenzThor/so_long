@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init_images.c                                   :+:      :+:    :+:   */
+/*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 16:17:46 by tbenz             #+#    #+#             */
-/*   Updated: 2023/10/26 15:32:28 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/10/26 18:17:45 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "stdio.h"
 
 int	ft_init_mlx(t_data *game)
 {
@@ -45,8 +44,8 @@ int	ft_init_images(t_data *game)
 	game->xmp_img.exit = ft_convert_images(game, EXIT_XPM);
 	if (!game->xmp_img.right.xpm_ptr || !game->xmp_img.right2.xpm_ptr
 		|| !game->xmp_img.right3.xpm_ptr || !game->xmp_img.right4.xpm_ptr
-		|| game->xmp_img.floor.xpm_ptr || game->xmp_img.borders.xpm_ptr
-		|| game->xmp_img.collectible.xpm_ptr || game->xmp_img.exit.xpm_ptr)
+		|| !game->xmp_img.floor.xpm_ptr || !game->xmp_img.borders.xpm_ptr
+		|| !game->xmp_img.collectible.xpm_ptr || !game->xmp_img.exit.xpm_ptr)
 		return (1);
 	return (0);
 }
@@ -56,12 +55,8 @@ t_image	ft_convert_images(t_data *game, char *path)
 	t_image	img;
 
 	img.xpm_ptr = mlx_xpm_file_to_image(game->mlx, path, &img.x, &img.y);
-	ft_putstr_fd(path, 1);
-	ft_putchar_fd('\n', 1);
 	if (!img.xpm_ptr)
 		ft_putstr_fd(CONV_ERR, 2);
-	else
-		ft_putstr_fd("Success\n", 2);
 	return (img);
 }
 

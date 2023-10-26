@@ -6,11 +6,12 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 12:20:04 by tbenz             #+#    #+#             */
-/*   Updated: 2023/10/25 17:49:54 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/10/26 17:55:54 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
 
 void	ft_error_code_printer(t_data *game, int n)
 {
@@ -37,4 +38,25 @@ void	ft_error_code_printer(t_data *game, int n)
 		if (game->error_code == -6)
 			ft_putstr_fd(MAP_ERR2, 2);
 	}
+}
+
+char	**ft_copy_map(t_data *game)
+{
+	int		i;
+	char	**map;
+
+	map = (char **)malloc(sizeof(char *) * game->rows);
+	if (!map)
+		return (NULL);
+	i = -1;
+	while (++i < game->rows)
+	{
+		map[i] = ft_substr(game->map[i], 0, game->col);
+		if (!map[i])
+		{
+			ft_free(map, i);
+			return (NULL);
+		}
+	}
+	return (map);
 }

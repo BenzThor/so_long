@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 11:00:17 by tbenz             #+#    #+#             */
-/*   Updated: 2023/10/20 17:04:52 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/10/26 17:53:08 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	ft_rows_and_col(int fd, t_data *game)
 	return (0);
 }
 
-static void	ft_free(char **arr, int i)
+void	ft_free(char **arr, int i)
 {
 	int	j;
 

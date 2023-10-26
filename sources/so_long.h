@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 11:10:38 by tbenz             #+#    #+#             */
-/*   Updated: 2023/10/26 15:04:26 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/10/26 18:27:55 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define MALL_ERR	"Error\nThere has been a malloc error!\n"
 # define MAP_ERR	"Error\nThe map is not rectangular!\n"
 # define FILE_ERR	"Error\nThe file path you provided is not valid!\n"
+# define MAPCPY_ERR	"Error\nThere has been an error while copying the map\n"
 # define EXIT_ERR	"Error\nThere is an issue with your exit(s)!\n"
 # define COLL_ERR	"Error\nThere is no collectible!\n"
 # define ST_POS_ERR	"Error\nThere is an issue with your starting position!\n"
@@ -128,46 +129,59 @@ typedef struct s_data
 
 /* 	function definitions */
 
-void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 /* Read the map and parse the map */
 
 // create the map from the file
-int			ft_create_map(t_data *game);
+int		ft_create_map(t_data *game);
 // determine the number of rows and columns
-int			ft_rows_and_col(int fd, t_data *game);
+int		ft_rows_and_col(int fd, t_data *game);
 // if the line can't be read, free the line and close the file descriptor
-void		ft_free_close(char *line, int fd);
+void	ft_free_close(char *line, int fd);
 // malloc the map and fill it with the actual values
-int			ft_fill_map(int fd, t_data *game);
+int		ft_fill_map(int fd, t_data *game);
 // if there are issues creating the map, free the whole map array
-static void	ft_free(char **arr, int i);
-
-/* print errors - depending on error that occurred */
-
-void		ft_error_code_printer(t_data *game, int n);
+void	ft_free(char **arr, int i);
 
 /* initialize mlx, window and the sprites */
 
 // call the other initialize functions and check whether the init worked or not
-int			ft_init(t_data *game);
+int		ft_init(t_data *game);
 // initialize the mlx pointer + the window pointer
-int			ft_init_mlx(t_data *game);
+int		ft_init_mlx(t_data *game);
 // initialize the sprites
-int			ft_init_images(t_data *game);
+int		ft_init_images(t_data *game);
 // converting the images to xpm
-t_image		ft_convert_images(t_data *game, char *path);
+t_image	ft_convert_images(t_data *game, char *path);
 
 /* check map */
+
 // checks the map and calls the other functions to execute specific tests
-int			ft_map_checker(t_data *game);
+int		ft_map_checker(t_data *game);
 // check if all objects are there (i.e. exit, collectibles and player)
-void		ft_check_objects(t_data *game);
+void	ft_check_objects(t_data *game);
 // check the surroundings, if they are all borders
-void		ft_check_surroundings(t_data *game);
+void	ft_check_surroundings(t_data *game);
 // flood fill the map and...
-void		ft_check_path(t_data *game, t_data gmc);
+void	ft_check_path(t_data *game, char **map_cpy, int x, int y);
 // ... check whether all the objects are there and are reachable
-void		ft_check_path_helper(t_data *game, t_data gc, int d);
+void	ft_check_path_helper(t_data *game, char **map, int x, int y, int d);
+
+/* Sprites to Screen */
+
+// puts the map to the screen
+void	ft_map_to_screen(t_data *game);
+// determines which sprite to put to the screen
+void	ft_determine_sprite(t_data *game, int x, int y);
+// puts the specific sprite image to the screen
+void	ft_put_sprite(t_data *game, t_image *sprite, int x, int y);
+
+/* UTILS */
+
+// print errors - depending on error that occurred
+void	ft_error_code_printer(t_data *game, int n);
+// copy the map so it doesn't get overwritten while checking the path
+char	**ft_copy_map(t_data *game);
 
 #endif

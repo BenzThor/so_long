@@ -6,7 +6,7 @@
 #    By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 15:17:18 by tbenz             #+#    #+#              #
-#    Updated: 2023/10/26 15:17:53 by tbenz            ###   ########.fr        #
+#    Updated: 2023/10/26 16:28:53 by tbenz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,7 @@ ${NAME}:
 				@echo
 
 bonus:			${LIBFT} ${NAME_BONUS}
-
+SRCS 			= $(addprefix $(SRCS_DIR),\
 ${NAME_BONUS}:
 				${CC} ${SRCS_BONUS} ${LIBFT} ${STANDARD_FLAGS} ${MINILIBX_FLAGS} -o ${NAME_BONUS}
 				@echo "\n$(NAME): $(GREEN)$(NAME) was compiled with Bonus.$(RESET)"
@@ -70,7 +70,7 @@ ${NAME_BONUS}:
 
 ${LIBFT}:
 				@echo
-				make bonus -C libraries/Libft
+				make all -C libraries/Libft
 
 clean:
 				make clean -C libraries/Libft
