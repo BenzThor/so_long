@@ -6,13 +6,14 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 14:16:24 by tbenz             #+#    #+#             */
-/*   Updated: 2023/10/26 19:29:53 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/10/26 20:28:13 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include <stdio.h>
 
-int	key_hook(int keycode, t_data *game)
+int	ft_key_hook(int keycode, t_data *game)
 {
 	if (keycode == KEY_UP || keycode == KEY_W)
 		ft_player_move(game, 1, game->x, game->y - 1);
@@ -23,7 +24,10 @@ int	key_hook(int keycode, t_data *game)
 	if (keycode == KEY_DOWN || keycode == KEY_S)
 		ft_player_move(game, 4, game->x, game->y + 1);
 	if (keycode == KEY_Q || keycode == KEY_ESC)
-		ft_close_game(game);
+	{
+		ft_putstr_fd("Nothing to see here", 2);
+		// ft_close_game(game);
+	}
 	return (0);
 }
 
@@ -33,18 +37,24 @@ void	ft_player_move(t_data *game, int dir, int x, int y)
 
 	pos = game->map[y][x];
 	if (pos == 'E' && game->collectibles == 0)
-		ft_close_game(game);
+	{
+		ft_putstr_fd("Nothing to see here", 2);
+		// ft_close_game(game);
+	}
 	else if (pos == '0' || pos == 'C' || pos == 'E')
 	{
-		game->tile = pos;
-		if (!game->tile)
-			game->map[game->y][game->x] = '0';
+		if (game->map[y][x] == 'E')
+			game->tile = 'E';
 		else
-			game->map[game->y][game->x];
-		pos = 'P';
-		if (pos = 'C')
+			game->tile = '0';
+		game->map[game->y][game->x] = game->tile;
+		ft_determine_sprite(game, game->x, game->y);
+		game->map[y][x] = 'P';
+		game->x = x;
+		game->y = y;
+		if (pos == 'C')
 			(game->collectibles)--;
 		(game->movements)++;
-		ft_map_to_screen(game);
+		ft_determine_sprite(game, x, y);
 	}
 }

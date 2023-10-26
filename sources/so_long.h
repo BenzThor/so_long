@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 11:10:38 by tbenz             #+#    #+#             */
-/*   Updated: 2023/10/26 19:19:46 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/10/26 20:39:09 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ typedef struct s_data
 	int			y;
 	int			error_code;
 	int			movements;
+	int			d;
 	char		tile;
 }	t_data;
 
@@ -166,9 +167,9 @@ void	ft_check_objects(t_data *game);
 // check the surroundings, if they are all borders
 void	ft_check_surroundings(t_data *game);
 // flood fill the map and...
-void	ft_check_path(t_data *game, char **map_cpy, int x, int y);
+void	ft_check_path(t_data *game, t_data gmc);
 // ... check whether all the objects are there and are reachable
-void	ft_check_path_helper(t_data *game, char **map, int x, int y, int d);
+void	ft_check_path_helper(t_data *game, t_data gc, int d);
 
 /* Sprites to Screen */
 
@@ -178,6 +179,13 @@ void	ft_map_to_screen(t_data *game);
 void	ft_determine_sprite(t_data *game, int x, int y);
 // puts the specific sprite image to the screen
 void	ft_put_sprite(t_data *game, t_image *sprite, int x, int y);
+
+/* Inputs */
+
+// key hook function to determine actions for key press;
+int		ft_key_hook(int keycode, t_data *game);
+// moving player and rendering changes; checking winning condition
+void	ft_player_move(t_data *game, int dir, int x, int y);
 
 /* UTILS */
 

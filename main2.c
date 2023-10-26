@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 14:59:39 by tbenz             #+#    #+#             */
-/*   Updated: 2023/10/26 18:30:36 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/10/26 20:41:03 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(void)
 
 	i = 0;
 	ft_initialize_game(&game);
-	game.map_file = "./map/map.txt";
+	game.map_file = "./map/map.ber";
 	printf("%s\n", game.map_file);
 	check = ft_create_map(&game);
 	printf("size of map: %lu\n", sizeof(game.map));
@@ -41,5 +41,6 @@ int	main(void)
 	printf("%d", game.error_code);
 	ft_init(&game);
 	ft_map_to_screen(&game);
+	mlx_hook(game.wdw, 2, 1L<<0, ft_key_hook, &game);
 	mlx_loop(game.mlx);
 }
