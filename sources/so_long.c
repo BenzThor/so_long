@@ -6,42 +6,41 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 10:38:05 by tbenz             #+#    #+#             */
-/*   Updated: 2023/10/20 15:10:21 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/10/31 18:29:27 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include <stdio.h>
 
-int	main(int argc, char *argv)
+void	ft_initialize_game(t_data *game)
 {
-	t_list	game;
-
-	ft_initialize_game(&game);
+	ft_bzero(game, sizeof(t_data));
 }
-/*
+
 int	main(void)
 {
-	void	*mlx;
-	t_data	img;
-	void	*mlx_win;
+	t_data	game;
+	int		check;
 	int		i;
-	int		j;
 
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 900, 600, "Hello world");
-	img.img = mlx_new_image(mlx, 900, 600);
-	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.ll, &img.endian);
 	i = 0;
-	while (i < 100)
+	ft_initialize_game(&game);
+	game.map_file = "./map/map.ber";
+	printf("%s\n", game.map_file);
+	check = ft_create_map(&game);
+	printf("size of map: %lu\n", sizeof(game.map));
+	printf("col: %d\t rows: %d\t check: %d\n", game.col, game.rows, check);
+	ft_map_checker(&game);
+	i = 0;
+	while (i < game.rows)
 	{
-		j = 0;
-		while (j <= i / 2)
-			my_mlx_pixel_put(&img, 250 + i, 250 + j++, 0xFF0000);
-		while (j > 50 && j < 100)
-			my_mlx_pixel_put(&img, 250 + i, 250 - j++, 0xFF0000);
+		printf("%s\n", game.map[i]);
 		i++;
 	}
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	mlx_hook(img.mlx_win, 2, 1L<<0, )
-	mlx_loop(mlx);
-} */
+	printf("%d", game.error_code);
+	ft_init(&game);
+	ft_map_to_screen(&game);
+	mlx_hook(game.wdw, 2, 1L << 0, ft_key_hook, &game);
+	mlx_loop(game.mlx);
+}

@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 11:10:38 by tbenz             #+#    #+#             */
-/*   Updated: 2023/10/26 20:39:09 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/10/31 17:36:19 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,5 +193,12 @@ void	ft_player_move(t_data *game, int dir, int x, int y);
 void	ft_error_code_printer(t_data *game, int n);
 // copy the map so it doesn't get overwritten while checking the path
 char	**ft_copy_map(t_data *game);
+
+/* Free and end program */
+
+// close the game and free all the resources
+void	ft_close_game(t_data *game);
+// free the images used for the program
+void	ft_free_images(t_data *game);
 
 #endif

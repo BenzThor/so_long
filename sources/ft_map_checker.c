@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 13:44:03 by tbenz             #+#    #+#             */
-/*   Updated: 2023/10/26 20:36:17 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/10/31 17:32:43 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ int	ft_map_checker(t_data *game)
 	if (game->exit != 1 || game->collectibles < 1)
 		game->error_code = -6;
 	ft_error_code_printer(game, 3);
+	ft_free(game->map, game->rows);
 	game->map = map_cpy;
 	return (game->error_code);
 }
