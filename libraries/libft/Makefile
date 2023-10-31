@@ -1,4 +1,4 @@
-CC = gcc
+CC = cc
 INCDIRS=-I.
 CFLAGS = -Wall -Wextra -Werror
 
