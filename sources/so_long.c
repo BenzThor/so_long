@@ -6,17 +6,12 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 10:38:05 by tbenz             #+#    #+#             */
-/*   Updated: 2023/11/01 11:36:54 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/11/01 13:30:37 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include <stdio.h>
-
-void	ft_initialize_game(t_data *game)
-{
-	ft_bzero(game, sizeof(t_data));
-}
 
 int	main(void)
 {

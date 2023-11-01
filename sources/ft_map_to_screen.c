@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:36:18 by tbenz             #+#    #+#             */
-/*   Updated: 2023/11/01 12:49:22 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/11/01 13:30:13 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,20 +61,20 @@ void ft_print_movements(t_data *game)
 	int		y;
 	int		x_limit;
 
-	x = .027 * (IMG_SIZE * game->col);
+	x = 11;
 	x_limit = 100;
 	if (game->movements > 100)
 		x_limit = 105;
 	while (x++ < x_limit)
 	{
-		y = .02 * (IMG_SIZE * game->rows);
+		y = 5;
 		while (y++ < 26)
 			mlx_pixel_put(game->mlx, game->wdw, x, y, 000000);
 	}
 	mov = ft_itoa(game->movements);
 	print = ft_strjoin("Movements: ", mov);
-	mlx_string_put(game->mlx, game->wdw, .05 * (IMG_SIZE * game->col), \
-					.08 * (IMG_SIZE * game->rows), 0xFF0000, print);
+	mlx_string_put(game->mlx, game->wdw, 21, \
+					20, 0xFF0000, print);
 	free(mov);
 	free (print);
 }

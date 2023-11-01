@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 14:16:24 by tbenz             #+#    #+#             */
-/*   Updated: 2023/11/01 12:35:33 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/11/01 12:58:14 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,18 @@ void	ft_free_images(t_data *game)
 	mlx_destroy_image(game->mlx, game->xmp_img.r.a[1].xpm_ptr);
 	mlx_destroy_image(game->mlx, game->xmp_img.r.a[2].xpm_ptr);
 	mlx_destroy_image(game->mlx, game->xmp_img.r.a[3].xpm_ptr);
+	mlx_destroy_image(game->mlx, game->xmp_img.l.a[0].xpm_ptr);
+	mlx_destroy_image(game->mlx, game->xmp_img.l.a[1].xpm_ptr);
+	mlx_destroy_image(game->mlx, game->xmp_img.l.a[2].xpm_ptr);
+	mlx_destroy_image(game->mlx, game->xmp_img.l.a[3].xpm_ptr);
+	mlx_destroy_image(game->mlx, game->xmp_img.f.a[0].xpm_ptr);
+	mlx_destroy_image(game->mlx, game->xmp_img.f.a[1].xpm_ptr);
+	mlx_destroy_image(game->mlx, game->xmp_img.f.a[2].xpm_ptr);
+	mlx_destroy_image(game->mlx, game->xmp_img.f.a[3].xpm_ptr);
+	mlx_destroy_image(game->mlx, game->xmp_img.b.a[0].xpm_ptr);
+	mlx_destroy_image(game->mlx, game->xmp_img.b.a[1].xpm_ptr);
+	mlx_destroy_image(game->mlx, game->xmp_img.b.a[2].xpm_ptr);
+	mlx_destroy_image(game->mlx, game->xmp_img.b.a[3].xpm_ptr);
 	mlx_destroy_image(game->mlx, game->xmp_img.floor.xpm_ptr);
 	mlx_destroy_image(game->mlx, game->xmp_img.exit.xpm_ptr);
 	mlx_destroy_image(game->mlx, game->xmp_img.collectible.xpm_ptr);

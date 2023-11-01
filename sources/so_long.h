@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 11:10:38 by tbenz             #+#    #+#             */
-/*   Updated: 2023/11/01 12:12:59 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/11/01 13:20:11 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,6 @@ int		ft_init(t_data *game);
 int		ft_init_mlx(t_data *game);
 // initialize the sprites
 int		ft_init_images(t_data *game);
-// 	initialize the player images
 void	ft_init_player(t_data *game);
 // converting the images to xpm
 t_image	ft_convert_images(t_data *game, char *path);
@@ -206,6 +205,8 @@ void ft_set_game_tile(t_data *game, int x, int y);
 void	ft_error_code_printer(t_data *game, int n);
 // copy the map so it doesn't get overwritten while checking the path
 char	**ft_copy_map(t_data *game);
+// initializes the variables
+void	ft_initialize_game(t_data *game);
 
 /* Free and end program */
 
