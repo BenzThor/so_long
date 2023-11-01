@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 11:10:38 by tbenz             #+#    #+#             */
-/*   Updated: 2023/10/31 17:36:19 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/11/01 12:12:59 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,12 +95,17 @@ typedef struct s_image
 	int		y;
 }	t_image;
 
+typedef struct s_img_arr
+{
+	t_image a[4];
+} t_img_arr;
+
 typedef struct s_xmp_img
 {
-	t_image	right;
-	t_image	right2;
-	t_image	right3;
-	t_image	right4;
+	t_img_arr	r;
+	t_img_arr	l;
+	t_img_arr	f;
+	t_img_arr	b;
 	t_image	floor;
 	t_image	borders;
 	t_image	collectible;
@@ -155,6 +160,8 @@ int		ft_init(t_data *game);
 int		ft_init_mlx(t_data *game);
 // initialize the sprites
 int		ft_init_images(t_data *game);
+// 	initialize the player images
+void	ft_init_player(t_data *game);
 // converting the images to xpm
 t_image	ft_convert_images(t_data *game, char *path);
 
@@ -179,6 +186,10 @@ void	ft_map_to_screen(t_data *game);
 void	ft_determine_sprite(t_data *game, int x, int y);
 // puts the specific sprite image to the screen
 void	ft_put_sprite(t_data *game, t_image *sprite, int x, int y);
+// puts the player to the screen, depending on the direction he walks to
+void	ft_put_player(t_data *game, int x, int y, int fps);
+// print the movements on the screen
+void ft_print_movements(t_data *game);
 
 /* Inputs */
 
@@ -186,6 +197,8 @@ void	ft_put_sprite(t_data *game, t_image *sprite, int x, int y);
 int		ft_key_hook(int keycode, t_data *game);
 // moving player and rendering changes; checking winning condition
 void	ft_player_move(t_data *game, int dir, int x, int y);
+// stores the value of the tile the player steps on
+void ft_set_game_tile(t_data *game, int x, int y);
 
 /* UTILS */
 

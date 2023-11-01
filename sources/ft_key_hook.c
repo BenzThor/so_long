@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 14:16:24 by tbenz             #+#    #+#             */
-/*   Updated: 2023/10/31 18:28:28 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/11/01 12:35:33 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,27 @@ int	ft_key_hook(int keycode, t_data *game)
 void	ft_player_move(t_data *game, int dir, int x, int y)
 {
 	char	pos;
-	int		dir1;
 
-	dir1 = dir;
+	game->d = dir;
 	pos = game->map[y][x];
 	if (pos == 'E' && game->collectibles == 0)
-	{
 		ft_close_game(game);
-	}
 	else if (pos == '0' || pos == 'C' || pos == 'E')
 	{
+		ft_set_game_tile(game, x, y);
+		game->map[y][x] = 'P';
+		game->x = x;
+		game->y = y;
+		if (pos == 'C')
+			(game->collectibles)--;
+		game->movements += 1;
+		ft_determine_sprite(game, x, y);
+		ft_print_movements(game);
+	}
+}
+
+void ft_set_game_tile(t_data *game, int x, int y)
+{
 		if (!game->tile)
 			game->tile = '0';
 		game->map[game->y][game->x] = game->tile;
@@ -51,14 +62,6 @@ void	ft_player_move(t_data *game, int dir, int x, int y)
 			game->tile = 'E';
 		else
 			game->tile = '0';
-		game->map[y][x] = 'P';
-		game->x = x;
-		game->y = y;
-		if (pos == 'C')
-			(game->collectibles)--;
-		(game->movements)++;
-		ft_determine_sprite(game, x, y);
-	}
 }
 
 void	ft_close_game(t_data *game)
@@ -74,10 +77,10 @@ void	ft_close_game(t_data *game)
 
 void	ft_free_images(t_data *game)
 {
-	mlx_destroy_image(game->mlx, game->xmp_img.right.xpm_ptr);
-	mlx_destroy_image(game->mlx, game->xmp_img.right2.xpm_ptr);
-	mlx_destroy_image(game->mlx, game->xmp_img.right3.xpm_ptr);
-	mlx_destroy_image(game->mlx, game->xmp_img.right4.xpm_ptr);
+	mlx_destroy_image(game->mlx, game->xmp_img.r.a[0].xpm_ptr);
+	mlx_destroy_image(game->mlx, game->xmp_img.r.a[1].xpm_ptr);
+	mlx_destroy_image(game->mlx, game->xmp_img.r.a[2].xpm_ptr);
+	mlx_destroy_image(game->mlx, game->xmp_img.r.a[3].xpm_ptr);
 	mlx_destroy_image(game->mlx, game->xmp_img.floor.xpm_ptr);
 	mlx_destroy_image(game->mlx, game->xmp_img.exit.xpm_ptr);
 	mlx_destroy_image(game->mlx, game->xmp_img.collectible.xpm_ptr);
