@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 12:20:04 by tbenz             #+#    #+#             */
-/*   Updated: 2023/11/01 13:10:45 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/11/01 18:13:35 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,32 @@ char	**ft_copy_map(t_data *game)
 void	ft_initialize_game(t_data *game)
 {
 	ft_bzero(game, sizeof(t_data));
+}
+
+int	ft_animate_player(t_data *game)
+{
+	if (!game->d)
+		game->d = 4;
+	if (game->d == 1)
+		ft_put_sprite(game, game->xmp_img.b.a[game->curr_frame].xpm_ptr, game->x, game->y);
+	else if (game->d == 2)
+		ft_put_sprite(game, game->xmp_img.l.a[game->curr_frame].xpm_ptr, game->x, game->y);
+	else if (game->d == 3)
+		ft_put_sprite(game, game->xmp_img.r.a[game->curr_frame].xpm_ptr, game->x, game->y);
+	else if (game->d == 4)
+		ft_put_sprite(game, game->xmp_img.f.a[game->curr_frame].xpm_ptr, game->x, game->y);
+	game->curr_frame = (game->curr_frame + 1) % 4;
+	usleep(FRAME_INTERVAL);
+	return (0);
+}
+
+t_bfs	*ft_lstlast_bfs(t_bfs *lst)
+{
+	while (lst != NULL)
+	{
+		if (lst->ptr == NULL)
+			return (lst);
+		lst = lst->ptr;
+	}
+	return (lst);
 }

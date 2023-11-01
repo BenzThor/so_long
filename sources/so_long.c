@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 10:38:05 by tbenz             #+#    #+#             */
-/*   Updated: 2023/11/01 13:30:37 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/11/01 19:52:21 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,7 @@ int	main(void)
 	ft_init(&game);
 	ft_map_to_screen(&game);
 	mlx_hook(game.wdw, 2, 1L << 0, ft_key_hook, &game);
+	mlx_hook(game.wdw, 17, 0, ft_close_game, &game);
+	mlx_loop_hook(game.mlx, ft_animate_player, &game);
 	mlx_loop(game.mlx);
 }

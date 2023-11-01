@@ -6,7 +6,7 @@
 #    By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 15:17:18 by tbenz             #+#    #+#              #
-#    Updated: 2023/10/31 18:27:35 by tbenz            ###   ########.fr        #
+#    Updated: 2023/11/01 19:51:57 by tbenz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ LIBFT 			= ./libraries/libft/libft.a
 
 CC 				= cc
 
-STANDARD_FLAGS 	= -Wall -Werror -Wextra
+STANDARD_FLAGS 	= -Wall -Werror -Wextra -g
 MINILIBX_FLAGS	= -lmlx -lXext -lX11
 
 VALGRIND		= @valgrind --leak-check=full --show-leak-kinds=all \
@@ -90,4 +90,4 @@ run:			${NAME}
 run_bonus:		${NAME_BONUS}
 					${VALGRIND} ./${NAME_BONUS} assets/maps/valid/bonus/map5.ber
 
-.PHONY:			all clean fclean re rebonus valgrind run run_bonus
+.PHONY:			all clean fclean re rebonus run run_bonus

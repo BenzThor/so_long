@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:36:18 by tbenz             #+#    #+#             */
-/*   Updated: 2023/11/01 13:30:13 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/11/01 16:10:33 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	ft_put_sprite(t_data *game, t_image *sprite, int x, int y)
 void	ft_determine_sprite(t_data *game, int x, int y)
 {
 	char	pos;
-	static int fps = 0;
 
 	pos = game->map[y][x];
 	if (pos == '0')
@@ -33,24 +32,23 @@ void	ft_determine_sprite(t_data *game, int x, int y)
 	else if (pos == 'E')
 		ft_put_sprite(game, game->xmp_img.exit.xpm_ptr, x, y);
 	else if (pos == 'P')
-		ft_put_player(game, x, y, fps);
-	fps++;
-	if (fps == 800)
-		fps = 0;
+		ft_put_player(game, x, y);
 }
 
-void	ft_put_player(t_data *game, int x, int y, int fps)
+int	ft_put_player(t_data *game, int x, int y)
 {
 	if (!game->d)
 		game->d = 4;
+	game->curr_frame = (game->curr_frame + 1) % FRAME_NUM;
 	if (game->d == 1)
-		ft_put_sprite(game, game->xmp_img.b.a[fps / 200].xpm_ptr, x, y);
+		ft_put_sprite(game, game->xmp_img.b.a[game->curr_frame].xpm_ptr, x, y);
 	else if (game->d == 2)
-		ft_put_sprite(game, game->xmp_img.l.a[fps / 200].xpm_ptr, x, y);
+		ft_put_sprite(game, game->xmp_img.l.a[game->curr_frame].xpm_ptr, x, y);
 	else if (game->d == 3)
-		ft_put_sprite(game, game->xmp_img.r.a[fps / 200].xpm_ptr, x, y);
+		ft_put_sprite(game, game->xmp_img.r.a[game->curr_frame].xpm_ptr, x, y);
 	else if (game->d == 4)
-		ft_put_sprite(game, game->xmp_img.f.a[fps / 200].xpm_ptr, x, y);
+		ft_put_sprite(game, game->xmp_img.f.a[game->curr_frame].xpm_ptr, x, y);
+	return (0);
 }
 
 void ft_print_movements(t_data *game)
@@ -63,8 +61,8 @@ void ft_print_movements(t_data *game)
 
 	x = 11;
 	x_limit = 100;
-	if (game->movements > 100)
-		x_limit = 105;
+	if (game->movements > 99)
+		x_limit = 107;
 	while (x++ < x_limit)
 	{
 		y = 5;

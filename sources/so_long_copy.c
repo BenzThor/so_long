@@ -1,21 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_mlx_pixel_put.c                                 :+:      :+:    :+:   */
+/*   so_long_copy.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/07 12:02:09 by tbenz             #+#    #+#             */
-/*   Updated: 2023/10/07 12:09:25 by tbenz            ###   ########.fr       */
+/*   Created: 2023/10/07 10:38:05 by tbenz             #+#    #+#             */
+/*   Updated: 2023/11/01 18:28:54 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include <stdio.h>
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+int	main(void)
 {
-	char	*dst;
+	t_data	game;
+	int		i;
 
-	dst = data->addr + (y * data->ll + x * (data->bpp / 8));
-	*(unsigned int *)dst = color;
+	ft_initialize_game(&game);
+	game.map_file = "./map/map.ber";
+	ft_create_map(&game);
+	ft_map_checker(&game);
+	i = 0;
+	while (i < game.rows)
+	{
+		printf("%s\n", game.map[i]);
+		i++;
+	}
+	printf("%d", ft_shortest_path(&game));
 }

@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 14:16:24 by tbenz             #+#    #+#             */
-/*   Updated: 2023/11/01 12:58:14 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/11/01 15:13:12 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void ft_set_game_tile(t_data *game, int x, int y)
 			game->tile = '0';
 }
 
-void	ft_close_game(t_data *game)
+int	ft_close_game(t_data *game)
 {
 	ft_free_images(game);
 	ft_free(game->map, game->rows);
@@ -73,6 +73,7 @@ void	ft_close_game(t_data *game)
 	mlx_loop_end(game->mlx);
 	free(game->mlx);
 	exit (0);
+	return (0);
 }
 
 void	ft_free_images(t_data *game)
