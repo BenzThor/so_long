@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 10:38:05 by tbenz             #+#    #+#             */
-/*   Updated: 2023/11/01 18:28:54 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/11/02 13:32:53 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(void)
 	int		i;
 
 	ft_initialize_game(&game);
-	game.map_file = "./map/map.ber";
+	game.map_file = "./map/map1.ber";
 	ft_create_map(&game);
 	ft_map_checker(&game);
 	i = 0;
@@ -28,5 +28,6 @@ int	main(void)
 		printf("%s\n", game.map[i]);
 		i++;
 	}
-	printf("%d", ft_shortest_path(&game));
+	ft_shortest_path(&game);
+	printf("%d", game.sp);
 }

@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 14:16:24 by tbenz             #+#    #+#             */
-/*   Updated: 2023/11/01 15:13:12 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/11/02 13:50:41 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,32 +36,37 @@ void	ft_player_move(t_data *game, int dir, int x, int y)
 
 	game->d = dir;
 	pos = game->map[y][x];
+	if (game->collectibles == 0)
+		ft_shortest_path(game);
 	if (pos == 'E' && game->collectibles == 0)
+	{
+		// ft_win_loose()
 		ft_close_game(game);
+	}
 	else if (pos == '0' || pos == 'C' || pos == 'E')
 	{
-		ft_set_game_tile(game, x, y);
-		game->map[y][x] = 'P';
-		game->x = x;
-		game->y = y;
-		if (pos == 'C')
-			(game->collectibles)--;
-		game->movements += 1;
+		ft_set_tiles_stats(game, x, y);
 		ft_determine_sprite(game, x, y);
 		ft_print_movements(game);
 	}
 }
 
-void ft_set_game_tile(t_data *game, int x, int y)
+void	ft_set_tiles_stats(t_data *game, int x, int y)
 {
-		if (!game->tile)
-			game->tile = '0';
-		game->map[game->y][game->x] = game->tile;
-		ft_determine_sprite(game, game->x, game->y);
-		if (game->map[y][x] == 'E')
-			game->tile = 'E';
-		else
-			game->tile = '0';
+	if (!game->tile)
+		game->tile = '0';
+	game->map[game->y][game->x] = game->tile;
+	ft_determine_sprite(game, game->x, game->y);
+	if (game->map[y][x] == 'E')
+		game->tile = 'E';
+	else
+		game->tile = '0';
+	game->map[y][x] = 'P';
+	game->x = x;
+	game->y = y;
+	if (game->map[y][x] == 'C')
+		(game->collectibles)--;
+	game->movements += 1;
 }
 
 int	ft_close_game(t_data *game)

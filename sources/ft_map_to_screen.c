@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:36:18 by tbenz             #+#    #+#             */
-/*   Updated: 2023/11/01 16:10:33 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/11/02 13:51:08 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	ft_put_player(t_data *game, int x, int y)
 	return (0);
 }
 
-void ft_print_movements(t_data *game)
+void	ft_print_movements(t_data *game)
 {
 	char	*mov;
 	char	*print;

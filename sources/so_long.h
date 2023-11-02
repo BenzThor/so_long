@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 11:10:38 by tbenz             #+#    #+#             */
-/*   Updated: 2023/11/01 18:19:58 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/11/02 13:54:27 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 /* 	include libraries */
 # include <mlx.h>
 # include "../libraries/libft/libft.h"
-#include "stdio.h"
+# include "stdio.h"
 
 /* 	Error Codes */
 # define MALL_ERR	"Error\nThere has been a malloc error!\n"
@@ -79,7 +79,7 @@
 # define EXIT_XPM		"sprites/assets/exit.xpm"
 
 # define FRAME_NUM		4
-#define FRAME_INTERVAL 	200000
+# define FRAME_INTERVAL 	200000
 
 /*
 typedef struct s_data
@@ -101,8 +101,8 @@ typedef struct s_image
 
 typedef struct s_img_arr
 {
-	t_image a[4];
-} t_img_arr;
+	t_image	a[4];
+}	t_img_arr;
 
 typedef struct s_xmp_img
 {
@@ -110,10 +110,10 @@ typedef struct s_xmp_img
 	t_img_arr	l;
 	t_img_arr	f;
 	t_img_arr	b;
-	t_image	floor;
-	t_image	borders;
-	t_image	collectible;
-	t_image	exit;
+	t_image		floor;
+	t_image		borders;
+	t_image		collectible;
+	t_image		exit;
 }	t_xmp_img;
 
 /* 	game defintion --> stores the important values of the game */
@@ -134,8 +134,9 @@ typedef struct s_data
 	int			error_code;
 	int			movements;
 	int			d;
-	char		tile;
 	int			curr_frame;
+	int			sp;
+	char		tile;
 }	t_data;
 
 typedef struct s_bfs
@@ -199,7 +200,7 @@ void	ft_put_sprite(t_data *game, t_image *sprite, int x, int y);
 // puts the player to the screen, depending on the direction he walks to
 int		ft_put_player(t_data *game, int x, int y);
 // print the movements on the screen
-void 	ft_print_movements(t_data *game);
+void	ft_print_movements(t_data *game);
 
 /* Inputs */
 
@@ -208,7 +209,7 @@ int		ft_key_hook(int keycode, t_data *game);
 // moving player and rendering changes; checking winning condition
 void	ft_player_move(t_data *game, int dir, int x, int y);
 // stores the value of the tile the player steps on
-void ft_set_game_tile(t_data *game, int x, int y);
+void	ft_set_tiles_stats(t_data *game, int x, int y);
 
 /* UTILS */
 
@@ -226,19 +227,28 @@ int		ft_close_game(t_data *game);
 // free the images used for the program
 void	ft_free_images(t_data *game);
 
-int	ft_animate_player(t_data *game);
+int		ft_animate_player(t_data *game);
+
+/* Shortest Path to exit after collecting all collectibles */
 
 // determine the shortest path to the exit
-int	ft_shortest_path(t_data *game);
-//
-int ft_nav_map(t_data *game, t_bfs **lst);
-//
-void ft_list_append(t_bfs **lst, int dist, int x, int y);
-//
-void	ft_node_pop(t_bfs **lst);
+void	ft_shortest_path(t_data *game);
+// navigates the map and appends new coordinates to a linked list
+void	ft_nav_map(t_data *game, t_bfs **lst);
+// checks whether a new coordinate should be added to the back of the list
+int		ft_corrval(t_data *game, t_bfs **lst, int x, int y);
 
+/* BFS Helpers */
+
+// creates a new bfs list element and initiates the first node element
 t_bfs	*ft_lstnew_bfs(t_data *game);
-
+// appends elements to the linked list
+void	ft_list_append(t_bfs **lst, int dist, int x, int y);
+// pops nodes out of the list and frees their memory space
+void	ft_node_pop(t_bfs **lst);
+// gets the last element of a linked list and returns it
 t_bfs	*ft_lstlast_bfs(t_bfs *lst);
+// initites a node, setting the x, y, dist and ptr values
+void	ft_node_init(t_bfs **node, int x, int y, int dist);
 
 #endif
