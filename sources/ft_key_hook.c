@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 14:16:24 by tbenz             #+#    #+#             */
-/*   Updated: 2023/11/02 15:30:14 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/11/02 19:46:43 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,12 @@ void	ft_player_move(t_data *game, int dir, int x, int y)
 
 	game->d = dir;
 	movto = game->map[y][x];
-	if (movto == 'E' && game->collectibles == 0)
-	{
-		ft_win_loose(game, mov_to_end);
-		ft_close_game(game);
-	}
-	if (movto != '1' && movto != 'G')
+	if ((movto == 'E' && game->collectibles == 0) || movto == 'G')
+		ft_win_loose(game, mov_to_end, movto);
+	if (movto != '1')
 	{
 		ft_set_tiles_stats(game, x, y);
-		ft_determine_sprite(game, x, y);
+		ft_put_player(game, x, y);
 		ft_print_movements(game);
 	}
 	if (movto == 'C' && game->collectibles == 0)
@@ -73,6 +70,8 @@ void	ft_set_tiles_stats(t_data *game, int x, int y)
 
 int	ft_close_game(t_data *game)
 {
+	if (game->enemy_num > 0)
+		ft_free_enemy(game);
 	ft_free_images(game);
 	ft_free(game->map, game->rows);
 	mlx_destroy_window(game->mlx, game->wdw);

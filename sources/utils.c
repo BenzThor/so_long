@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 12:20:04 by tbenz             #+#    #+#             */
-/*   Updated: 2023/11/02 17:17:41 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/11/02 19:44:58 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,18 @@ void	ft_initialize_game(t_data *game)
 	ft_bzero(game, sizeof(t_data));
 }
 
-void	ft_win_loose(t_data *game, int mov_to_end)
+void	ft_win_loose(t_data *game, int mov_to_end, int movto)
 {
-	if (game->sp == game->movements - mov_to_end + 1)
-		ft_putstr_fd(WIN_MESS, 1);
-	else
-		ft_putstr_fd(LO_MESS, 1);
+	if (movto == 'E')
+	{
+		if (game->sp == game->movements - mov_to_end + 1)
+			ft_putstr_fd(WIN_MESS, 1);
+		else
+			ft_putstr_fd(LO_MESS, 1);
+	}
+	else if (movto == 'G')
+		ft_putstr_fd(LO_MESS2, 1);
+	ft_close_game(game);
 }
 
 void	ft_put_sprite(t_data *game, t_image *sprite, int x, int y)
@@ -85,6 +91,7 @@ void	ft_create_new_enemy(t_data *game, int x, int y)
 	t_enemy	*temp;
 
 	enemy = malloc(sizeof(t_enemy));
+	ft_memset(enemy, 0, sizeof(t_enemy));
 	if (!enemy)
 		return;
 	enemy->x = x;

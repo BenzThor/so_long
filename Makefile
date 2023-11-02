@@ -6,7 +6,7 @@
 #    By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 15:17:18 by tbenz             #+#    #+#              #
-#    Updated: 2023/11/02 15:38:58 by tbenz            ###   ########.fr        #
+#    Updated: 2023/11/02 18:45:10 by tbenz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,8 @@ SRCS 			= $(addprefix $(SRCS_DIR),\
 				ft_shortest_path.c \
 				bfs_helpers.c \
 				ft_animation.c \
-				utils.c)
+				utils.c \
+				utils2.c)
 
 SRCS_BONUS 		= $(addprefix $(BONUS_SRCS_DIR),\
 				so_long_bonus.c				\

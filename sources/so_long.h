@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 11:10:38 by tbenz             #+#    #+#             */
-/*   Updated: 2023/11/02 18:10:16 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/11/02 19:45:16 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 /* Winning messages */
 # define WIN_MESS	"You win! Well done!\n"
 # define LO_MESS	"You got lost on the way! Try to escape directly!\n"
+# define LO_MESS2	"You don't have to catch them all."
 
 /* 	Image Definition */
 # define IMG_SIZE		32
@@ -242,7 +243,7 @@ char	**ft_copy_map(t_data *game);
 // initializes the variables
 void	ft_initialize_game(t_data *game);
 // determine if the player went to exit directly; print message
-void	ft_win_loose(t_data *game, int mov_to_end);
+void	ft_win_loose(t_data *game, int mov_to_end, int movto);
 // puts the specific sprite image to the screen
 void	ft_put_sprite(t_data *game, t_image *sprite, int x, int y);
 
@@ -287,5 +288,6 @@ void	ft_animate_enemy(t_data *game, int frame_ival);
 
 void	ft_create_new_enemy(t_data *game, int x, int y);
 int		ft_define_frame_ival(t_data *game);
+void	ft_free_enemy(t_data *game);
 
 #endif
