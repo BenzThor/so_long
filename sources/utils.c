@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 12:20:04 by tbenz             #+#    #+#             */
-/*   Updated: 2023/11/02 13:49:33 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/11/02 17:17:41 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,23 +65,38 @@ void	ft_initialize_game(t_data *game)
 	ft_bzero(game, sizeof(t_data));
 }
 
-int	ft_animate_player(t_data *game)
+void	ft_win_loose(t_data *game, int mov_to_end)
 {
-	if (!game->d)
-		game->d = 4;
-	if (game->d == 1)
-		ft_put_sprite(game, game->xmp_img.b.a[game->curr_frame].xpm_ptr, \
-					game->x, game->y);
-	else if (game->d == 2)
-		ft_put_sprite(game, game->xmp_img.l.a[game->curr_frame].xpm_ptr, \
-					game->x, game->y);
-	else if (game->d == 3)
-		ft_put_sprite(game, game->xmp_img.r.a[game->curr_frame].xpm_ptr, \
-					game->x, game->y);
-	else if (game->d == 4)
-		ft_put_sprite(game, game->xmp_img.f.a[game->curr_frame].xpm_ptr, \
-					game->x, game->y);
-	game->curr_frame = (game->curr_frame + 1) % 4;
-	usleep(FRAME_INTERVAL);
-	return (0);
+	if (game->sp == game->movements - mov_to_end + 1)
+		ft_putstr_fd(WIN_MESS, 1);
+	else
+		ft_putstr_fd(LO_MESS, 1);
+}
+
+void	ft_put_sprite(t_data *game, t_image *sprite, int x, int y)
+{
+	mlx_put_image_to_window(game->mlx, game->wdw, sprite, IMG_SIZE * x, \
+							IMG_SIZE * y);
+}
+
+void	ft_create_new_enemy(t_data *game, int x, int y)
+{
+	t_enemy *enemy;
+	t_enemy	*temp;
+
+	enemy = malloc(sizeof(t_enemy));
+	if (!enemy)
+		return;
+	enemy->x = x;
+	enemy->y = y;
+	enemy->ptr = NULL;
+	if (game->enemy != NULL)
+	{
+		temp = game->enemy;
+		while (temp->ptr)
+			temp = temp->ptr;
+		temp->ptr = enemy;
+	}
+	else
+		game->enemy = enemy;
 }

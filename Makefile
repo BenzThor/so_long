@@ -6,7 +6,7 @@
 #    By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 15:17:18 by tbenz             #+#    #+#              #
-#    Updated: 2023/11/02 13:13:34 by tbenz            ###   ########.fr        #
+#    Updated: 2023/11/02 15:38:58 by tbenz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,13 +33,15 @@ SRCS_DIR		= ./sources/
 BONUS_SRCS_DIR	= ./bonus_sources/
 
 SRCS 			= $(addprefix $(SRCS_DIR),\
-				so_long_copy.c			\
+				so_long.c			\
 				ft_create_map.c		\
 				ft_init.c	\
 				ft_map_checker.c	\
 				ft_map_to_screen.c	\
 				ft_key_hook.c		\
 				ft_shortest_path.c \
+				bfs_helpers.c \
+				ft_animation.c \
 				utils.c)
 
 SRCS_BONUS 		= $(addprefix $(BONUS_SRCS_DIR),\

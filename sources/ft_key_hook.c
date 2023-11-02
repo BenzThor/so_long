@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 14:16:24 by tbenz             #+#    #+#             */
-/*   Updated: 2023/11/02 13:50:41 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/11/02 15:30:14 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,36 +24,40 @@ int	ft_key_hook(int keycode, t_data *game)
 	if (keycode == KEY_DOWN || keycode == KEY_S)
 		ft_player_move(game, 4, game->x, game->y + 1);
 	if (keycode == KEY_Q || keycode == KEY_ESC)
-	{
 		ft_close_game(game);
-	}
 	return (0);
 }
 
 void	ft_player_move(t_data *game, int dir, int x, int y)
 {
-	char	pos;
+	char			movto;
+	static int		mov_to_end;
 
 	game->d = dir;
-	pos = game->map[y][x];
-	if (game->collectibles == 0)
-		ft_shortest_path(game);
-	if (pos == 'E' && game->collectibles == 0)
+	movto = game->map[y][x];
+	if (movto == 'E' && game->collectibles == 0)
 	{
-		// ft_win_loose()
+		ft_win_loose(game, mov_to_end);
 		ft_close_game(game);
 	}
-	else if (pos == '0' || pos == 'C' || pos == 'E')
+	if (movto != '1' && movto != 'G')
 	{
 		ft_set_tiles_stats(game, x, y);
 		ft_determine_sprite(game, x, y);
 		ft_print_movements(game);
 	}
+	if (movto == 'C' && game->collectibles == 0)
+	{
+		ft_shortest_path(game);
+		mov_to_end = game->movements;
+	}
 }
 
 void	ft_set_tiles_stats(t_data *game, int x, int y)
 {
-	if (!game->tile)
+	if (game->map[y][x] == 'C')
+		(game->collectibles)--;
+	if (!game->tile || game->tile == 'X')
 		game->tile = '0';
 	game->map[game->y][game->x] = game->tile;
 	ft_determine_sprite(game, game->x, game->y);
@@ -64,8 +68,6 @@ void	ft_set_tiles_stats(t_data *game, int x, int y)
 	game->map[y][x] = 'P';
 	game->x = x;
 	game->y = y;
-	if (game->map[y][x] == 'C')
-		(game->collectibles)--;
 	game->movements += 1;
 }
 
@@ -99,6 +101,8 @@ void	ft_free_images(t_data *game)
 	mlx_destroy_image(game->mlx, game->xmp_img.b.a[1].xpm_ptr);
 	mlx_destroy_image(game->mlx, game->xmp_img.b.a[2].xpm_ptr);
 	mlx_destroy_image(game->mlx, game->xmp_img.b.a[3].xpm_ptr);
+	mlx_destroy_image(game->mlx, game->xmp_img.e.a[0].xpm_ptr);
+	mlx_destroy_image(game->mlx, game->xmp_img.e.a[1].xpm_ptr);
 	mlx_destroy_image(game->mlx, game->xmp_img.floor.xpm_ptr);
 	mlx_destroy_image(game->mlx, game->xmp_img.exit.xpm_ptr);
 	mlx_destroy_image(game->mlx, game->xmp_img.collectible.xpm_ptr);

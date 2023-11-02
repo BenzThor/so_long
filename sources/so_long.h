@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 11:10:38 by tbenz             #+#    #+#             */
-/*   Updated: 2023/11/02 13:54:27 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/11/02 18:10:16 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@
 # define CONV_ERR	"Error\nThere has been an error converting an image!\n"
 # define MLX_ERR	"Error\nThere has been an issue assigning the mlx ptr\n"
 # define WDW_ERR	"Error\nThere has been an issue assigning the window ptr\n"
+
+/* Winning messages */
+# define WIN_MESS	"You win! Well done!\n"
+# define LO_MESS	"You got lost on the way! Try to escape directly!\n"
 
 /* 	Image Definition */
 # define IMG_SIZE		32
@@ -69,8 +73,8 @@
 # define PB3_XPM		"sprites/character/back3.xpm"
 # define PB4_XPM		"sprites/character/back4.xpm"
 
-# define E1_XPM			"sprites/enemy/enemy1"
-# define E2_XPM			"sprites/enemy/enemy2"
+# define E1_XPM			"sprites/enemy/enemy1.xpm"
+# define E2_XPM			"sprites/enemy/enemy2.xpm"
 
 # define FLOOR_XPM		"sprites/assets/gras.xpm"
 # define BORDERS_XPM	"sprites/assets/tree.xpm"
@@ -78,8 +82,9 @@
 # define COLL_XPM		"sprites/assets/collectible.xpm"
 # define EXIT_XPM		"sprites/assets/exit.xpm"
 
+# define FRAME_ENEM		2
 # define FRAME_NUM		4
-# define FRAME_INTERVAL 	200000
+# define FRAME_INTERVAL 200000
 
 /*
 typedef struct s_data
@@ -99,17 +104,31 @@ typedef struct s_image
 	int		y;
 }	t_image;
 
+typedef struct s_enemy
+{
+	int				x;
+	int				y;
+	int				frame;
+	struct s_enemy	*ptr;
+}	t_enemy;
+
 typedef struct s_img_arr
 {
-	t_image	a[4];
-}	t_img_arr;
+	t_image	a[FRAME_NUM];
+}	t_char_arr;
+
+typedef struct s_enem_arr
+{
+	t_image	a[FRAME_ENEM];
+}	t_enem_arr;
 
 typedef struct s_xmp_img
 {
-	t_img_arr	r;
-	t_img_arr	l;
-	t_img_arr	f;
-	t_img_arr	b;
+	t_char_arr	r;
+	t_char_arr	l;
+	t_char_arr	f;
+	t_char_arr	b;
+	t_enem_arr	e;
 	t_image		floor;
 	t_image		borders;
 	t_image		collectible;
@@ -135,7 +154,10 @@ typedef struct s_data
 	int			movements;
 	int			d;
 	int			curr_frame;
+	int			enem_frame;
 	int			sp;
+	int			enemy_num;
+	t_enemy		*enemy;
 	char		tile;
 }	t_data;
 
@@ -195,10 +217,10 @@ void	ft_check_path_helper(t_data *game, t_data gc, int d);
 void	ft_map_to_screen(t_data *game);
 // determines which sprite to put to the screen
 void	ft_determine_sprite(t_data *game, int x, int y);
-// puts the specific sprite image to the screen
-void	ft_put_sprite(t_data *game, t_image *sprite, int x, int y);
 // puts the player to the screen, depending on the direction he walks to
-int		ft_put_player(t_data *game, int x, int y);
+void	ft_put_player(t_data *game, int x, int y);
+// puts the enemies to the screen
+void	ft_put_enemy(t_data *game, int x, int y);
 // print the movements on the screen
 void	ft_print_movements(t_data *game);
 
@@ -219,6 +241,10 @@ void	ft_error_code_printer(t_data *game, int n);
 char	**ft_copy_map(t_data *game);
 // initializes the variables
 void	ft_initialize_game(t_data *game);
+// determine if the player went to exit directly; print message
+void	ft_win_loose(t_data *game, int mov_to_end);
+// puts the specific sprite image to the screen
+void	ft_put_sprite(t_data *game, t_image *sprite, int x, int y);
 
 /* Free and end program */
 
@@ -227,7 +253,6 @@ int		ft_close_game(t_data *game);
 // free the images used for the program
 void	ft_free_images(t_data *game);
 
-int		ft_animate_player(t_data *game);
 
 /* Shortest Path to exit after collecting all collectibles */
 
@@ -250,5 +275,17 @@ void	ft_node_pop(t_bfs **lst);
 t_bfs	*ft_lstlast_bfs(t_bfs *lst);
 // initites a node, setting the x, y, dist and ptr values
 void	ft_node_init(t_bfs **node, int x, int y, int dist);
+
+/* Animation */
+
+// calls the animation functions
+int		ft_animation(t_data *game);
+// animate the player (cycle through images with offset)
+void	ft_animate_player(t_data *game, int frame_ival);
+// animate the enemy (cycle through images with offset)
+void	ft_animate_enemy(t_data *game, int frame_ival);
+
+void	ft_create_new_enemy(t_data *game, int x, int y);
+int		ft_define_frame_ival(t_data *game);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 14:34:12 by tbenz             #+#    #+#             */
-/*   Updated: 2023/11/02 13:52:02 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/11/02 14:46:23 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_nav_map(t_data *game, t_bfs **lst)
 			ft_list_append(lst, (*lst)->dist, (*lst)->y + 1, (*lst)->x);
 		if (ft_corrval(game, lst, (*lst)->x, (*lst)->y - 1) && game->sp < 1)
 			ft_list_append(lst, (*lst)->dist, (*lst)->y - 1, (*lst)->x);
-		game->map[(*lst)->y][(*lst)->x] = ' ';
+		game->map[(*lst)->y][(*lst)->x] = 'X';
 		ft_node_pop(lst);
 	}
 }

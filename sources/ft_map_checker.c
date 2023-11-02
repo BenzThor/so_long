@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 13:44:03 by tbenz             #+#    #+#             */
-/*   Updated: 2023/10/31 17:32:43 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/11/02 15:50:35 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,16 +94,16 @@ void	ft_check_path(t_data *game, t_data gmc)
 	gc = gmc;
 	gc.map[gc.y][gc.x] = 'V';
 	if (gc.y > 1 && gc.map[gc.y - 1][gc.x] != '1' && \
-		gc.map[gc.y - 1][gc.x] != 'V')
+		gc.map[gc.y - 1][gc.x] != 'V' && gc.map[gc.y - 1][gc.x] != 'G')
 		ft_check_path_helper(game, gc, 1);
 	if (gc.y < gc.rows - 2 && gc.map[gc.y + 1][gc.x] != '1' && \
-		gc.map[gc.y + 1][gc.x] != 'V')
+		gc.map[gc.y + 1][gc.x] != 'V' && gc.map[gc.y - 1][gc.x] != 'V')
 		ft_check_path_helper(game, gc, 2);
 	if (gc.x > 1 && gc.map[gc.y][gc.x - 1] != '1' && \
-		gc.map[gc.y][gc.x - 1] != 'V')
+		gc.map[gc.y][gc.x - 1] != 'V' && gc.map[gc.y - 1][gc.x] != 'V')
 		ft_check_path_helper(game, gc, 3);
 	if (gc.x < gc.col - 2 && gc.map[gc.y][gc.x + 1] != '1' && \
-			gc.map[gc.y][gc.x + 1] != 'V')
+			gc.map[gc.y][gc.x + 1] != 'V' && gc.map[gc.y - 1][gc.x] != 'V')
 		ft_check_path_helper(game, gc, 4);
 }
 

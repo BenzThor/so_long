@@ -6,24 +6,18 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:36:18 by tbenz             #+#    #+#             */
-/*   Updated: 2023/11/02 13:51:08 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/11/02 17:18:39 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	ft_put_sprite(t_data *game, t_image *sprite, int x, int y)
-{
-	mlx_put_image_to_window(game->mlx, game->wdw, sprite, IMG_SIZE * x, \
-							IMG_SIZE * y);
-}
 
 void	ft_determine_sprite(t_data *game, int x, int y)
 {
 	char	pos;
 
 	pos = game->map[y][x];
-	if (pos == '0')
+	if (pos == '0' || pos == 'X')
 		ft_put_sprite(game, game->xmp_img.floor.xpm_ptr, x, y);
 	else if (pos == '1')
 		ft_put_sprite(game, game->xmp_img.borders.xpm_ptr, x, y);
@@ -33,9 +27,15 @@ void	ft_determine_sprite(t_data *game, int x, int y)
 		ft_put_sprite(game, game->xmp_img.exit.xpm_ptr, x, y);
 	else if (pos == 'P')
 		ft_put_player(game, x, y);
+	else if (pos == 'G')
+	{
+		ft_put_enemy(game, x, y);
+		ft_create_new_enemy(game, x, y);
+		game->enemy_num++;
+	}
 }
 
-int	ft_put_player(t_data *game, int x, int y)
+void	ft_put_player(t_data *game, int x, int y)
 {
 	if (!game->d)
 		game->d = 4;
@@ -48,7 +48,12 @@ int	ft_put_player(t_data *game, int x, int y)
 		ft_put_sprite(game, game->xmp_img.r.a[game->curr_frame].xpm_ptr, x, y);
 	else if (game->d == 4)
 		ft_put_sprite(game, game->xmp_img.f.a[game->curr_frame].xpm_ptr, x, y);
-	return (0);
+}
+
+void	ft_put_enemy(t_data *game, int x, int y)
+{
+	game->enem_frame = (game->enem_frame + 1) % FRAME_ENEM;
+	ft_put_sprite(game, game->xmp_img.e.a[game->enem_frame].xpm_ptr, x, y);
 }
 
 void	ft_print_movements(t_data *game)
