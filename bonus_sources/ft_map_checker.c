@@ -42,7 +42,7 @@ void	ft_check_surroundings(t_data *game)
 		while (++j < game->col)
 		{
 			if (((j == 0 || j == game->col - 1)
-					&& (i > 0 && i < game->rows - 2)))
+					&& (i > 0 && i < game->rows - 1)))
 				check = 1;
 			if (i == 0 || i == game->rows - 1 || check == 1)
 			{
