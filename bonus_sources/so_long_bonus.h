@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 11:10:38 by tbenz             #+#    #+#             */
-/*   Updated: 2023/11/03 13:16:20 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/11/03 15:03:59 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@
 # define MLX_ERR	"Error\nThere has been an issue assigning the mlx ptr\n"
 # define WDW_ERR	"Error\nThere has been an issue assigning the window ptr\n"
 # define ARGC_ERR	"Error\nSomething went wrong with your input\n"
+# define ARGC_ERR1	"You put too many arguments - put one map only!\n"
+# define ARGC_ERR2	"You forgot to put a map!\n"
+# define ARGC_ERR3	"Map file extention is wrong (It should be .ber)!\n"
 
 /* Winning messages */
 # define WIN_MESS	"You win! Well done!\n"
@@ -250,6 +253,8 @@ void	ft_create_new_enemy(t_data *game, int x, int y);
 /* Utils 2 */
 // free the enemy array
 void	ft_free_enemy(t_data *game);
+// checks the command line arguments for correct input
+void	ft_check_command_line_arguments(int argc, char **argv, t_data *game);
 
 /* Free and end program */
 

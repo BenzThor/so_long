@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 11:10:38 by tbenz             #+#    #+#             */
-/*   Updated: 2023/11/03 14:00:49 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/11/03 15:01:44 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@
 # define CONV_ERR	"Error\nThere has been an error converting an image!\n"
 # define MLX_ERR	"Error\nThere has been an issue assigning the mlx ptr\n"
 # define WDW_ERR	"Error\nThere has been an issue assigning the window ptr\n"
-# define ARGC_ERR	"Error\nSomething went wrong with your input\n"
+# define ARGC_ERR1	"You put too many arguments - put one map only!\n"
+# define ARGC_ERR2	"You forgot to put a map!\n"
+# define ARGC_ERR3	"Map file extention is wrong (It should be .ber)!\n"
 
 /* Winning messages */
 # define WIN_MESS	"You win! Well done!\n"
@@ -189,6 +191,8 @@ char	**ft_copy_map(t_data *game);
 void	ft_initialize_game(t_data *game);
 // puts the specific sprite image to the screen
 void	ft_put_sprite(t_data *game, t_image *sprite, int x, int y);
+// checks the command line arguments
+void	ft_check_command_line_arguments(int argc, char **argv, t_data *game);
 
 /* Free and end program */
 
