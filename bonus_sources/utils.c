@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 12:20:04 by tbenz             #+#    #+#             */
-/*   Updated: 2023/11/03 14:03:58 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/11/03 16:11:50 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	ft_error_code_printer(t_data *game, int n)
 			ft_putstr_fd(COLL_ERR, 2);
 		if (game->player != 1)
 			ft_putstr_fd(ST_POS_ERR, 2);
+		if (game->error_code == -7)
+			ft_putstr_fd(TILE_ERR, 2);
 	}
 	if (n == 3)
 	{

@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 11:10:38 by tbenz             #+#    #+#             */
-/*   Updated: 2023/11/03 15:01:44 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/11/03 15:34:12 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define MAPCPY_ERR	"Error\nThere has been an error while copying the map\n"
 # define EXIT_ERR	"Error\nThere is an issue with your exit(s)!\n"
 # define COLL_ERR	"Error\nThere is no collectible!\n"
+# define TILE_ERR	"ERROR\nThere is an invalid tile in your map\n"
 # define ST_POS_ERR	"Error\nThere is an issue with your starting position!\n"
 # define MAP_ERR2	"Error\nYour map is not solvable!\n"
 # define CONV_ERR	"Error\nThere has been an error converting an image!\n"
@@ -193,6 +194,10 @@ void	ft_initialize_game(t_data *game);
 void	ft_put_sprite(t_data *game, t_image *sprite, int x, int y);
 // checks the command line arguments
 void	ft_check_command_line_arguments(int argc, char **argv, t_data *game);
+
+/* Utils 2 */
+// checks the tiles for their content
+void	ft_check_tiles(t_data *game, char pos, int i, int j);
 
 /* Free and end program */
 

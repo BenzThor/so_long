@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:36:18 by tbenz             #+#    #+#             */
-/*   Updated: 2023/11/03 14:03:31 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/11/03 16:12:55 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	ft_determine_sprite(t_data *game, int x, int y)
 	{
 		ft_put_enemy(game, x, y);
 		ft_create_new_enemy(game, x, y);
-		game->enemy_num++;
 	}
 }
 

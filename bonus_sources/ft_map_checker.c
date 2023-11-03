@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 13:44:03 by tbenz             #+#    #+#             */
-/*   Updated: 2023/11/03 14:03:20 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/11/03 15:50:16 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,12 @@ void	ft_check_objects(t_data *game)
 	int	i;
 	int	j;
 
-	i = -1;
-	while (++i < game->rows)
+	i = 0;
+	while (++i < game->rows - 1)
 	{
-		j = -1;
-		while (++j < game->col)
-		{
-			if (game->map[i][j] == 'E')
-				game->exit++;
-			if (game->map[i][j] == 'C')
-				game->collectibles++;
-			if (game->map[i][j] == 'P')
-			{
-				game->player++;
-				game->x = j;
-				game->y = i;
-			}
-		}
+		j = 0;
+		while (++j < game->col - 1)
+			ft_check_tiles(game, game->map[i][j], i, j);
 	}
 	if (game->exit != 1 || game->collectibles < 1 || game->player != 1)
 		game->error_code = -4;
@@ -93,16 +82,16 @@ void	ft_check_path(t_data *game, t_data gmc)
 	gc = gmc;
 	gc.map[gc.y][gc.x] = 'V';
 	if (gc.y > 1 && gc.map[gc.y - 1][gc.x] != '1' && \
-		gc.map[gc.y - 1][gc.x] != 'V' && gc.map[gc.y - 1][gc.x] != 'G')
+		gc.map[gc.y - 1][gc.x] != 'V')
 		ft_check_path_helper(game, gc, 1);
 	if (gc.y < gc.rows - 2 && gc.map[gc.y + 1][gc.x] != '1' && \
-		gc.map[gc.y + 1][gc.x] != 'V' && gc.map[gc.y + 1][gc.x] != 'G')
+		gc.map[gc.y + 1][gc.x] != 'V')
 		ft_check_path_helper(game, gc, 2);
 	if (gc.x > 1 && gc.map[gc.y][gc.x - 1] != '1' && \
-		gc.map[gc.y][gc.x - 1] != 'V' && gc.map[gc.y][gc.x - 1] != 'G')
+		gc.map[gc.y][gc.x - 1] != 'V')
 		ft_check_path_helper(game, gc, 3);
 	if (gc.x < gc.col - 2 && gc.map[gc.y][gc.x + 1] != '1' && \
-			gc.map[gc.y][gc.x + 1] != 'V' && gc.map[gc.y][gc.x + 1] != 'G')
+			gc.map[gc.y][gc.x + 1] != 'V')
 		ft_check_path_helper(game, gc, 4);
 }
 
@@ -113,7 +102,6 @@ int	ft_map_checker(t_data *game)
 	map_cpy = ft_copy_map(game);
 	if (!map_cpy)
 		ft_putstr_fd(MAPCPY_ERR, 2);
-	ft_error_code_printer(game, 1);
 	ft_check_objects(game);
 	ft_check_surroundings(game);
 	game->collectibles = 0;

@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 13:44:03 by tbenz             #+#    #+#             */
-/*   Updated: 2023/11/03 14:03:26 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/11/03 15:47:57 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,12 @@ void	ft_check_objects(t_data *game)
 	int	i;
 	int	j;
 
-	i = -1;
-	while (++i < game->rows)
+	i = 0;
+	while (++i < game->rows - 1)
 	{
-		j = -1;
-		while (++j < game->col)
-		{
-			if (game->map[i][j] == 'E')
-				game->exit++;
-			if (game->map[i][j] == 'C')
-				game->collectibles++;
-			if (game->map[i][j] == 'P')
-			{
-				game->player++;
-				game->x = j;
-				game->y = i;
-			}
-		}
+		j = 0;
+		while (++j < game->col - 1)
+			ft_check_tiles(game, game->map[i][j], i, j);
 	}
 	if (game->exit != 1 || game->collectibles < 1 || game->player != 1)
 		game->error_code = -4;
@@ -113,7 +102,6 @@ int	ft_map_checker(t_data *game)
 	map_cpy = ft_copy_map(game);
 	if (!map_cpy)
 		ft_putstr_fd(MAPCPY_ERR, 2);
-	ft_error_code_printer(game, 1);
 	ft_check_objects(game);
 	ft_check_surroundings(game);
 	game->collectibles = 0;

@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 10:38:05 by tbenz             #+#    #+#             */
-/*   Updated: 2023/11/03 15:04:44 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/11/03 15:52:31 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,7 @@ int	main(int argc, char **argv)
 		ft_close_game(&game);
 	}
 	if (ft_map_checker(&game) < 0)
-	{
-		ft_error_code_printer(&game, 2);
 		ft_close_game(&game);
-	}
 	if (ft_init(&game))
 		ft_close_game(&game);
 	ft_map_to_screen(&game);
