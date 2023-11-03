@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 /* 	include libraries */
 # include <mlx.h>
@@ -90,17 +90,6 @@
 # define FRAME_NUM		4
 # define FRAME_INTERVAL 200000
 
-/*
-typedef struct s_data
-{
-	void	*img;
-	char	*addr;
-	int		bpp;
-	int		ll;
-	int		endian;
-}	t_data;
-*/
-
 typedef struct s_image
 {
 	void	*xpm_ptr;
@@ -174,8 +163,6 @@ typedef struct s_bfs
 }	t_bfs;
 
 /* 	function definitions */
-
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 /* Read the map and parse the map */
 
