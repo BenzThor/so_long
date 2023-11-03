@@ -1,1 +1,0 @@
-cc main2.c ./sources/utils.c ./sources/ft_create_map.c ./sources/ft_map_checker.c ./sources/key_hook.c ./sources/ft_init.c ./sources/ft_map_to_screen.c ./libraries/libft/libft.a -lmlx -lXext -lX11 -g

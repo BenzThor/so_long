@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/07 14:59:50 by tbenz             #+#    #+#             */
-/*   Updated: 2023/11/03 14:34:36 by tbenz            ###   ########.fr       */
+/*   Created: 2023/11/02 18:39:05 by tbenz             #+#    #+#             */
+/*   Updated: 2023/11/03 14:04:01 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "so_long_bonus.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+void	ft_free_enemy(t_data *game)
 {
-	size_t	len;
-	char	*ptr;
+	t_enemy	*temp;
+	t_enemy	*temp2;
 
-	len = ft_strlen(s1) + ft_strlen(s2) +1;
-	ptr = malloc(len);
-	if (ptr == NULL)
-		return (NULL);
-	ft_strlcpy(ptr, s1, ft_strlen(s1) + 1);
-	ft_strlcat(ptr, s2, len);
-	return (ptr);
+	temp = game->enemy;
+	while (temp)
+	{
+		temp2 = temp->ptr;
+		free (temp);
+		temp = temp2;
+	}
+	game->enemy = NULL;
 }
-/*
-int	main(void)
-{
-	printf("%s", ft_strjoin("Passt ", "das?"));
-} */

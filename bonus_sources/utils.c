@@ -6,11 +6,11 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 12:20:04 by tbenz             #+#    #+#             */
-/*   Updated: 2023/11/03 13:46:24 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/11/03 14:03:58 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	ft_error_code_printer(t_data *game, int n)
 {
@@ -69,4 +69,27 @@ void	ft_put_sprite(t_data *game, t_image *sprite, int x, int y)
 {
 	mlx_put_image_to_window(game->mlx, game->wdw, sprite, IMG_SIZE * x, \
 							IMG_SIZE * y);
+}
+
+void	ft_create_new_enemy(t_data *game, int x, int y)
+{
+	t_enemy	*enemy;
+	t_enemy	*temp;
+
+	enemy = malloc(sizeof(t_enemy));
+	ft_memset(enemy, 0, sizeof(t_enemy));
+	if (!enemy)
+		return ;
+	enemy->x = x;
+	enemy->y = y;
+	enemy->ptr = NULL;
+	if (game->enemy != NULL)
+	{
+		temp = game->enemy;
+		while (temp->ptr)
+			temp = temp->ptr;
+		temp->ptr = enemy;
+	}
+	else
+		game->enemy = enemy;
 }

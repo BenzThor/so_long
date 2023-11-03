@@ -6,11 +6,11 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 14:16:24 by tbenz             #+#    #+#             */
-/*   Updated: 2023/11/03 14:03:08 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/11/03 14:03:14 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int	ft_key_hook(int keycode, t_data *game)
 {
@@ -34,7 +34,7 @@ void	ft_player_move(t_data *game, int dir, int x, int y)
 
 	game->d = dir;
 	movto = game->map[y][x];
-	if ((movto == 'E' && game->collectibles == 0))
+	if ((movto == 'E' && game->collectibles == 0) || movto == 'G')
 		ft_win_loose(game, mov_to_end, movto);
 	if (movto != '1')
 	{

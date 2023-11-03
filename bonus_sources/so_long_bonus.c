@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   so_long_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 10:38:05 by tbenz             #+#    #+#             */
-/*   Updated: 2023/11/03 14:03:44 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/11/03 14:03:40 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int	main(int argc, char **argv)
 {
@@ -35,6 +35,7 @@ int	main(int argc, char **argv)
 		ft_map_to_screen(&game);
 		mlx_hook(game.wdw, 2, 1L << 0, ft_key_hook, &game);
 		mlx_hook(game.wdw, 17, 0, ft_close_game, &game);
+		mlx_loop_hook(game.mlx, ft_animation, &game);
 		mlx_loop(game.mlx);
 	}
 	ft_putstr_fd(ARGC_ERR, 2);

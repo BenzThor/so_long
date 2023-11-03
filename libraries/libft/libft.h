@@ -6,7 +6,7 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 18:30:19 by tbenz             #+#    #+#             */
-/*   Updated: 2023/10/09 11:23:38 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/11/03 12:15:41 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdarg.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
+#  define BUFFER_SIZE 1
 # endif
 
 /*		a struct that links to another struct resulting in a linked list	*/

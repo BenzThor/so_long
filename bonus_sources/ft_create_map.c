@@ -6,11 +6,11 @@
 /*   By: tbenz <tbenz@student.42vienna.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 11:00:17 by tbenz             #+#    #+#             */
-/*   Updated: 2023/11/03 14:28:03 by tbenz            ###   ########.fr       */
+/*   Updated: 2023/11/03 14:28:57 by tbenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int	ft_free_close(char *line, int fd, t_data *game, int error_code)
 {
